@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -17,6 +18,11 @@ public class MainActivity2 extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Récapitulatif de votre envoi");
 
+        getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+
         Intent intent = getIntent();
         String prenom = intent.getStringExtra("PRENOM");
         String nom = intent.getStringExtra("NOM");
@@ -26,5 +32,11 @@ public class MainActivity2 extends AppCompatActivity {
 
         TextView myResultTv = findViewById(R.id.resultTv);
         myResultTv.setText("Prenom: \n" +prenom +"\n\nNom de Famille :\n"+nom+"\n\nAdresse Email :\n"+email+"\n\nMessage :\n"+message);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }
